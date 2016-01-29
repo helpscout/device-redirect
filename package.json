@@ -4,7 +4,15 @@
   "description": "Redirect your users to device-specific apps and interstitial pages",
   "main": "lib/index.js",
   "scripts": {
-    "build": "babel src --out-dir lib",
+    "clean": "rimraf lib dist",
+    "build:lib": "babel src --out-dir lib",
+    "build:umd": "webpack src/index.js dist/device-redirect.js --config webpack.config.development.js",
+    "build:umd:min": "webpack src/index.js dist/device-redirect.min.js --config webpack.config.production.js",
+    "build": "npm run build:lib && npm run build:umd && npm run build:umd:min",
+    "preversion": "npm run clean && npm test",
+    "version": "npm run build",
+    "postversion": "git push && git push --tags && npm run clean",
+    "prepublish": "npm run clean && npm run build",
     "test": "mocha --compilers js:babel-register"
   },
   "repository": {
@@ -21,10 +29,13 @@
   "devDependencies": {
     "babel-cli": "^6.4.5",
     "babel-core": "^6.4.5",
+    "babel-loader": "^6.2.1",
     "babel-preset-es2015": "^6.3.13",
     "babel-register": "^6.4.3",
     "expect": "^1.13.4",
     "mobile-detect": "^1.3.1",
-    "mocha": "^2.4.5"
+    "mocha": "^2.4.5",
+    "rimraf": "^2.5.1",
+    "webpack": "^1.12.12"
   }
 }
