@@ -4,36 +4,52 @@ const MobileDetect = require('mobile-detect')
 const MOBILE_TIMEOUT = 500
 
 class DeviceRedirect {
-  constructor(conditions, userAgent) {
-    this.conditions = conditions
+  constructor(userAgent, options = {}) {
+    this.root = (typeof window !== 'undefined') ? window : {}
     this.detect = new MobileDetect(userAgent)
+    this.rules = options.rules || {}
+    if (typeof options.shouldRedirect === 'function') {
+      this.shouldRedirect = options.shouldRedirect
+    }
   }
 
   openApp() {
-    let condition = this.conditions[this.detect.os()]
-    if (!condition) {
-      return;
-    }
+    let rule = this.rules[this.detect.os()]
+    if (!rule) { return }
 
-    let iframe = document.createElement('iframe')
-    iframe.setAttribute('src', condition.urls.appUrl)
-    iframe.style.display = 'none'
-    document.body.appendChild(iframe)
-    this.timeout = setTimeout(() => {
-      document.location = condition.urls.redirectUrl
-    }, MOBILE_TIMEOUT)
-    if(window && window.removeEventListener) {
+    if (this.root.document) {
+      let iframe = this.root.document.createElement('iframe')
+      iframe.setAttribute('src', rule.appUrl)
+      iframe.style.display = 'none'
+      this.root.document.body.appendChild(iframe)
+    }
+    if (this.shouldRedirect()) {
+      this.timeout = setTimeout(() => {
+        this.redirect(rule.redirectUrl)
+      }, MOBILE_TIMEOUT)
+    }
+    if (this.root.removeEventListener) {
       window.addEventListener('pagehide', this._preventPopup)
     }
+  }
+
+  redirect(url) {
+    if (this.root.document) {
+      this.root.document.location = url
+    }
+  }
+
+  shouldRedirect() {
+    return true
   }
 
   _preventPopup() {
     clearTimeout(this.timeout)
     this.timeout = null
-    if(window && window.removeEventListener) {
+    if (this.root.removeEventListener) {
       window.removeEventListener('pagehide', this._preventPopup)
     }
   }
 }
 
-export default DeviceRedirect
+module.exports = DeviceRedirect
