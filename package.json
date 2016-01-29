@@ -1,0 +1,20 @@
+{
+  "name": "device-redirect",
+  "version": "1.0.0",
+  "description": "Redirect your users to device-specific apps and interstitial pages",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com"
+  },
+  "keywords": [
+    "device",
+    "redirect",
+    "interstitial"
+  ],
+  "author": "Maxi Ferreira <charca@gmail.com>",
+  "license": "MIT"
+}
