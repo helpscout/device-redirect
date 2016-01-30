@@ -1,0 +1,27 @@
+{
+  "name": "device-redirect",
+  "description": "Redirect your users to device-specific apps and interstitial pages",
+  "main": [
+    "dist/device-redirect.js"
+  ],
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "device",
+    "redirect",
+    "interstitial"
+  ],
+  "authors": [
+    "Maxi Ferreira <charca@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "test",
+    "src"
+  ]
+}
