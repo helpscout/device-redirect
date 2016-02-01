@@ -4,6 +4,10 @@ Redirect your users to device-specific apps and interstitial pages.
 
 `device-redirect` is a JavaScript module that provides a simple API to redirect your users to device-specific app URLs, with fallbacks to interstitial or mobile friendly web pages.
 
+## Demo
+
+We use device-redirect at [Help Scout](http://helpscout.com) to let our iOS users know they can get the full mobile experience with our new [iPhone App](https://itunes.apple.com/us/app/help-scout/id966327660).
+
 ![DeviceRedirectDemo](http://c.hlp.sc/2f2z3d1p3i3F/Screen%20Recording%202016-01-29%20at%2004.57%20PM.gif)
 
 ## Installation
