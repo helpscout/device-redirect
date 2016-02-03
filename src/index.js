@@ -14,7 +14,7 @@ class DeviceRedirect {
   }
 
   openApp() {
-    let rule = this.rules[this.detect.os()]
+    let rule = this._getRule();
     if (!rule) { return }
 
     if (this.root.document) {
@@ -41,6 +41,15 @@ class DeviceRedirect {
 
   shouldRedirect() {
     return true
+  }
+
+  _getRule() {
+    for(let rule in this.rules) {
+      if(this.detect.is(rule)) {
+        return this.rules[rule];
+      }
+    }
+    return false;
   }
 
   _preventPopup() {
