@@ -1,6 +1,6 @@
 {
   "name": "device-redirect",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Redirect your users to device-specific apps and interstitial pages",
   "main": "lib/index.js",
   "scripts": {
