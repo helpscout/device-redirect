@@ -18,10 +18,7 @@ class DeviceRedirect {
     if (!rule) { return }
 
     if (this.root.document) {
-      let iframe = this.root.document.createElement('iframe')
-      iframe.setAttribute('src', rule.appUrl)
-      iframe.style.display = 'none'
-      this.root.document.body.appendChild(iframe)
+      this.redirect(rule.appUrl)
     }
     if (this.shouldRedirect()) {
       this.timeout = setTimeout(() => {
