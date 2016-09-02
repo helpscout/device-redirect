@@ -21,14 +21,14 @@ npm install device-redirect --save-dev
 ### Bower
 
 ```javascript
-bower install https://npmcdn.com/device-redirect/bower.zip --save-dev
+bower install https://unpkg.com/device-redirect/bower.zip --save-dev
 ```
 
-### CDN (npmcdn.com)
+### CDN (unpkg.com)
 
 ```javascript
-https://npmcdn.com/device-redirect/dist/device-redirect.js
-https://npmcdn.com/device-redirect/dist/device-redirect.min.js
+https://unpkg.com/device-redirect/dist/device-redirect.js
+https://unpkg.com/device-redirect/dist/device-redirect.min.js
 ```
 
 ## Usage
